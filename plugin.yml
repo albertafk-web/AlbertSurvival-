@@ -1,0 +1,55 @@
+name: AlbertSurvival
+version: '${version}'
+main: com.albertsurvival.AlbertSurvival
+api-version: '26.3'
+authors: [AlbertSurvival]
+description: Gelişmiş susuzluk ve vücut sıcaklığı sistemi
+website: https://github.com/albertsurvival
+softdepend: []
+commands:
+  albertsurvival:
+    description: AlbertSurvival ana komutu
+    usage: /albertsurvival [reload|status|setthirst|settemperature|reset|debug|hud]
+    aliases: [as, albert]
+permissions:
+  albertsurvival.admin:
+    description: Tüm admin yetkileri
+    default: op
+    children:
+      albertsurvival.reload: true
+      albertsurvival.status: true
+      albertsurvival.setthirst: true
+      albertsurvival.settemperature: true
+      albertsurvival.reset: true
+      albertsurvival.debug: true
+      albertsurvival.hud: true
+  albertsurvival.reload:
+    description: Config yeniden yükleme
+    default: op
+  albertsurvival.status:
+    description: Durum görüntüleme
+    default: true
+  albertsurvival.setthirst:
+    description: Susuzluk ayarlama
+    default: op
+  albertsurvival.settemperature:
+    description: Sıcaklık ayarlama
+    default: op
+  albertsurvival.reset:
+    description: Oyuncu verilerini sıfırlama
+    default: op
+  albertsurvival.debug:
+    description: Debug modu
+    default: op
+  albertsurvival.hud:
+    description: HUD durumu
+    default: true
+  albertsurvival.bypass.thirst:
+    description: Susuzluk sistemini atla
+    default: false
+  albertsurvival.bypass.temperature:
+    description: Sıcaklık sistemini atla
+    default: false
+  albertsurvival.bypass.damage:
+    description: Hasar sistemini atla
+    default: false

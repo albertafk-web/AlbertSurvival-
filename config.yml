@@ -1,0 +1,344 @@
+# ============================================
+# AlbertSurvival - Yapılandırma Dosyası
+# Susuzluk ve Vücut Sıcaklığı Sistemi
+# ============================================
+
+general:
+  # Dil (tr / en)
+  language: "tr"
+  # Debug logları
+  debug: false
+  # Ana güncelleme aralığı (tick, 20 tick = 1 saniye)
+  update-interval-ticks: 40
+  # Plugin aktif mi
+  enabled: true
+
+# --------------------------------------------
+# SUSUZLUK SİSTEMİ
+# --------------------------------------------
+thirst:
+  enabled: true
+  # Maksimum susuzluk değeri
+  max: 100.0
+  # Minimum değer
+  minimum: 0.0
+  # İlk giriş / reset değeri
+  initial: 100.0
+  # Ölüm sonrası sıfırla mı?
+  reset-on-death: false
+  # Respawn'da değeri koru
+  keep-on-respawn: true
+  # Creative / Spectator istisnası
+  ignore-creative: true
+  ignore-spectator: true
+  # AFK iken azalma (false = AFK'da azalmaz)
+  drain-while-afk: false
+  # AFK timeout (saniye)
+  afk-timeout-seconds: 120
+
+  decay:
+    # Temel azalma (her update aralığında)
+    base: 0.08
+    # Sprint ek azalma
+    sprint: 0.12
+    # Zıplama ek azalma
+    jump: 0.04
+    # Sıcak biyom çarpanı
+    hot-biome-multiplier: 1.6
+    # Nether çarpanı
+    nether-multiplier: 2.2
+    # End çarpanı
+    end-multiplier: 1.3
+    # Yağmurda azalma çarpanı (1.0 = normal)
+    rain-multiplier: 0.7
+    # Yüzme çarpanı
+    swimming-multiplier: 0.9
+
+  items:
+    # Su şişesi yenileme miktarı
+    water-bottle: 35.0
+    # Diğer vanilla içecekler (opsiyonel)
+    potion: 20.0
+    milk-bucket: 15.0
+    honey-bottle: 10.0
+
+  effects:
+    # Eşikler (config'ten değiştirilebilir)
+    warning-level: 75.0
+    mild-level: 50.0
+    severe-level: 25.0
+    critical-level: 10.0
+    # Kritik seviyede hasar (saniye başına yaklaşık)
+    critical-damage: 1.0
+    # Hasar aralığı (tick)
+    damage-interval-ticks: 60
+    # Yavaşlama efekti (amplifier)
+    slow-amplifier: 0
+    # Yavaşlama süresi (tick)
+    slow-duration-ticks: 40
+
+# --------------------------------------------
+# VÜCUT SICAKLIĞI SİSTEMİ
+# --------------------------------------------
+temperature:
+  enabled: true
+  # Değer aralığı
+  min: -100.0
+  max: 100.0
+  # İlk değer
+  initial: 0.0
+  # Konfor aralığı
+  comfort-min: -10.0
+  comfort-max: 10.0
+  # Güncelleme aralığı (tick)
+  update-interval-ticks: 40
+  # Değişim hızı (yumuşak geçiş)
+  change-rate: 0.35
+  # Creative / Spectator
+  ignore-creative: true
+  ignore-spectator: true
+  # Ölüm sonrası
+  reset-on-death: false
+
+  # Biyom etkileri (hedef sıcaklık katkısı)
+  biomes:
+    # Soğuk
+    snowy_plains: -45.0
+    snowy_taiga: -40.0
+    ice_spikes: -55.0
+    frozen_ocean: -50.0
+    frozen_river: -40.0
+    snowy_beach: -35.0
+    jagged_peaks: -50.0
+    frozen_peaks: -55.0
+    grove: -30.0
+    # Ilıman
+    plains: 0.0
+    forest: -5.0
+    birch_forest: -5.0
+    dark_forest: -8.0
+    taiga: -15.0
+    swamp: 5.0
+    river: 0.0
+    ocean: -5.0
+    beach: 5.0
+    # Sıcak
+    desert: 45.0
+    badlands: 40.0
+    savanna: 30.0
+    jungle: 25.0
+    # Nether
+    nether_wastes: 70.0
+    crimson_forest: 65.0
+    warped_forest: 60.0
+    soul_sand_valley: 55.0
+    basalt_deltas: 75.0
+    # End
+    the_end: -20.0
+    end_highlands: -25.0
+    end_midlands: -20.0
+    end_barrens: -15.0
+    # Varsayılan
+    default: 0.0
+
+  weather:
+    clear: 0.0
+    rain: -8.0
+    thunder: -12.0
+    snow: -15.0
+
+  time:
+    # Gece ek soğukluk
+    night-offset: -8.0
+    # Gündüz sıcak biyomlarda ek
+    day-hot-bonus: 5.0
+
+  height:
+    # Deniz seviyesi referansı
+    sea-level: 64
+    # Her 10 blok yükseklik için soğukluk
+    per-10-blocks-above: -3.0
+    # Deniz altı
+    per-10-blocks-below: 2.0
+
+  armor:
+    enabled: true
+    # Materyal koruma (soğukta pozitif = koruma)
+    leather: 12.0
+    chainmail: 4.0
+    iron: 2.0
+    gold: 1.0
+    diamond: 3.0
+    netherite: 5.0
+    turtle: 6.0
+    # Sıcak ortamda zırh ısınma çarpanı (leather düşük tutar)
+    heat-multiplier:
+      leather: 0.6
+      chainmail: 1.0
+      iron: 1.1
+      gold: 1.2
+      diamond: 1.0
+      netherite: 0.9
+      turtle: 0.8
+
+  blocks:
+    # Yakınlık yarıçapı
+    radius: 3
+    # Sıcak kaynaklar
+    fire: 25.0
+    campfire: 20.0
+    soul_campfire: 15.0
+    lava: 40.0
+    magma_block: 18.0
+    # Soğuk kaynaklar
+    ice: -15.0
+    packed_ice: -20.0
+    blue_ice: -25.0
+    snow_block: -12.0
+    powder_snow: -30.0
+
+  movement:
+    sprint-heat: 2.0
+    swimming-cool: -8.0
+    in-water-cool: -5.0
+
+  # Soğuk aşamaları
+  cold_stages:
+    cool:
+      threshold: -25.0
+      message: true
+    chill:
+      threshold: -40.0
+      slow-amplifier: 0
+      message: true
+    severe:
+      threshold: -55.0
+      slow-amplifier: 1
+      damage: 0.5
+      damage-interval-ticks: 80
+    freeze:
+      threshold: -70.0
+      slow-amplifier: 2
+      damage: 1.5
+      damage-interval-ticks: 50
+      lethal: false
+    critical:
+      threshold: -85.0
+      slow-amplifier: 3
+      damage: 3.0
+      damage-interval-ticks: 30
+      lethal: true
+
+  # Sıcak aşamaları
+  heat_stages:
+    warm:
+      threshold: 25.0
+      message: true
+    hot:
+      threshold: 40.0
+      thirst-multiplier: 1.5
+      message: true
+    heatstroke:
+      threshold: 55.0
+      damage: 0.5
+      damage-interval-ticks: 80
+    burning:
+      threshold: 70.0
+      damage: 1.5
+      damage-interval-ticks: 50
+      set-fire: false
+    critical:
+      threshold: 85.0
+      damage: 3.0
+      damage-interval-ticks: 30
+      set-fire: true
+
+# --------------------------------------------
+# HUD
+# --------------------------------------------
+hud:
+  enabled: true
+  # BossBar kullan (yaklaşık gösterim)
+  use-bossbar: true
+  # ActionBar kullan
+  use-actionbar: true
+  # Title/Subtitle uyarıları
+  use-title-warnings: true
+  # BossBar rengi (susuzluk)
+  thirst-bar-color: BLUE
+  # Sıcaklık bar rengi dinamik
+  temperature-bar-enabled: true
+  # Güncelleme aralığı
+  update-interval-ticks: 20
+  # Resource pack zorunlu mu? (false = fallback)
+  require-resource-pack: false
+
+# --------------------------------------------
+# DÜNYALAR
+# --------------------------------------------
+worlds:
+  # Etkilenen dünyalar (boş = hepsi)
+  enabled-worlds: []
+  # Güvenli bölgeler (worldguard benzeri basit isim listesi)
+  safe-regions: []
+  # Nether'da sıcaklık zorla
+  force-nether-heat: true
+  # End'de soğuk
+  force-end-cold: true
+
+# --------------------------------------------
+# İSTİSNALAR
+# --------------------------------------------
+exemptions:
+  # Permission ile bypass
+  use-permissions: true
+  # Belirli gamemode'lar
+  creative: true
+  spectator: true
+  # God mode plugin uyumluluğu (basit)
+  invulnerable-players: true
+
+# --------------------------------------------
+# MESAJLAR (Türkçe)
+# --------------------------------------------
+messages:
+  prefix: "<gray>[<aqua>AlbertSurvival</aqua>]</gray> "
+  thirst-warning: "<yellow>Susamaya başladın...</yellow>"
+  thirst-severe: "<gold>Ciddi şekilde susadın!</gold>"
+  thirst-critical: "<red><bold>Kritik susuzluk! Su bul!</bold></red>"
+  cold-warning: "<aqua>Üşümeye başladın...</aqua>"
+  cold-severe: "<blue>Şiddetli soğuk hissediyorsun!</blue>"
+  freeze-warning: "<dark_aqua><bold>Donuyorsun!</bold></dark_aqua>"
+  heat-warning: "<gold>Sıcaklamaya başladın...</gold>"
+  heat-severe: "<red>Aşırı sıcak! Gölgeye veya suya gir!</red>"
+  burning-warning: "<dark_red><bold>Yanıyorsun!</bold></dark_red>"
+  status-format: "<gray>Susuzluk: <aqua>{thirst}</aqua> | Sıcaklık: <yellow>{temp}</yellow></gray>"
+  reload-success: "<green>Yapılandırma yeniden yüklendi.</green>"
+  no-permission: "<red>Yetkin yok.</red>"
+  player-not-found: "<red>Oyuncu bulunamadı.</red>"
+  value-set: "<green>{player} için {type} değeri {value} olarak ayarlandı.</green>"
+  reset-success: "<green>{player} verileri sıfırlandı.</green>"
+
+# --------------------------------------------
+# PERFORMANS
+# --------------------------------------------
+performance:
+  # Çevre tarama yarıçapı
+  scan-radius: 3
+  # Async kayıt
+  async-save: true
+  # Kayıt aralığı (saniye)
+  save-interval-seconds: 60
+  # Maksimum eşzamanlı tarama
+  max-scans-per-tick: 8
+
+# --------------------------------------------
+# DEPOLAMA
+# --------------------------------------------
+storage:
+  # yaml veya sqlite (şimdilik yaml)
+  type: "yaml"
+  # Oyuncu veri klasörü
+  player-folder: "playerdata"
+  # Otomatik yedek
+  auto-backup: true
